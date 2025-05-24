@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pilih Tema Ayat</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      background: #f3f9f3;
+      color: #1b3a1a;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .container {
+      margin-top: 5rem;
+      max-width: 600px;
+    }
+
+    .header-box {
+      background: #a48c2e;
+      color: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(164, 140, 46, 0.4);
+    }
+
+    .form-select {
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-submit {
+      background-color: #1b3a1a;
+      color: white;
+      transition: 0.3s ease-in-out;
+    }
+
+    .btn-submit:hover {
+      background-color: #a48c2e;
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header-box">
+      <h2>🔍 Klasifikasi Tema Ayat Juz 30</h2>
+      <p>Silakan pilih tema hasil klasifikasi untuk melihat ayat-ayat terkait</p>
+    </div>
+
+    <form method="POST" action="/hasil" onsubmit="return validasiTema();">
+      <label for="tema" class="form-label mt-4">Pilih Tema:</label>
+      <select id="tema" name="tema" class="form-select" required>
+        <option value="" disabled selected>-- Pilih tema --</option>
+        {% for tema in tema_list %}
+        <option value="{{ tema }}">{{ tema }}</option>
+        {% endfor %}
+      </select>
+
+      <button type="submit" class="btn btn-submit w-100">Tampilkan Ayat 📖</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 | Klasifikasi Tema Ayat Juz 30</p>
+  </footer>
+
+  <!-- Validasi JavaScript -->
+  <script>
+    function validasiTema() {
+      const tema = document.getElementById("tema").value;
+      if (!tema) {
+        alert("Silakan pilih tema terlebih dahulu.");
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>
